@@ -1,8 +1,7 @@
 const axios = require("../utils/axios");
-const BASE_URL = "http://localhost:5001";
+const BASE_URL = "http://localhost:5001/constellations";
 
 function bulkDelete(ids) {
-    
     const deleteRequests = ids.map(id => {
         const url = `${BASE_URL}${id}`;
         return fetch(url, { method: 'DELETE' })
@@ -19,6 +18,9 @@ function bulkDelete(ids) {
     });
     return Promise.all(deleteRequests);
 }
+
+const ids = ["KGQIwSq", "32TN5F8", "KMS1234"];
+bulkDelete(ids).then(console.log);
 
 module.exports = {
   bulkDelete,
